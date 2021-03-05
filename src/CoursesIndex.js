@@ -7,10 +7,14 @@ export default class CoursesIndex extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>
-          Courses
-        </h1>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col">
+            <h1>
+              Courses
+            </h1>
+          </div>
+        </div>
       </div>
     );
   }
