@@ -4,25 +4,21 @@ Component for web frontend of Trainocate Ecommerce app.
 
 ## Requirements
 
+* `nodejs 12.14.x`
 * `yarn`
 
-## Setup
+## Development Setup
 
-Install dependencies:
+1. Install dependencies:
 
 ```
 yarn install
 ```
 
-Build a local development version:
+2. Build aand run local development version:
 
 ```
-./node_modules/webpack-cli/bin/cli.js --mode development --watch
+./node_modules/.bin/webpack serve --mode development
 ```
 
-Open `dist/index.html` in browser
-
-### Development Setup
-
-* Spaces as tabs
-* 2 Spaces as tabs
+3. Point browser to `http://localhost:8080`
