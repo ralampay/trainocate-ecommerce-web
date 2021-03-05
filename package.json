@@ -1,0 +1,12 @@
+{
+  "name": "trainocate-ecommerce-web",
+  "version": "1.0.0",
+  "description": "Frontend for Trainocate Ecommerce",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0"
+  }
+}
