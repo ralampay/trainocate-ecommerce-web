@@ -22,3 +22,17 @@ yarn install
 ```
 
 3. Point browser to `http://localhost:8080`
+
+## Deploying to Production
+
+1. Build the app
+
+```
+yarn build
+```
+
+2. Deploy to S3
+
+```
+yarn deploy
+```

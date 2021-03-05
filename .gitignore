@@ -1,2 +1,6 @@
 node_modules/
 *.log
+
+# Ignore bundle.js since it will be built per deployment
+dist/bundle.js
+dist/bundle.js.LICENSE.txt
