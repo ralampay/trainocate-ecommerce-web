@@ -33,6 +33,7 @@ export default class App extends React.Component {
             <PaymentForm
               xenditToken={this.props.xenditToken}
               xenditBaseUrl={this.props.xenditBaseUrl}
+              urlPayment={this.props.urlPayment}
             />
           </Route>
         </Switch>

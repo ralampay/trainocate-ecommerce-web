@@ -10,10 +10,10 @@ export default class PaymentForm extends React.Component {
 
     this.state = {
       amount: 5000.00,
-      ccNumber: "",
-      ccExpiryMonth: "",
-      ccExpiryYear: "",
-      ccCvn: "",
+      ccNumber: "4000000000000002",
+      ccExpiryMonth: "12",
+      ccExpiryYear: "2025",
+      ccCvn: "123",
       isMultipleUse: false,
       isLoading: false,
       errors: []
@@ -41,19 +41,76 @@ export default class PaymentForm extends React.Component {
   }
 
   xenditResponseHandler(err, creditCardCharge) {
-    console.log(err);
-    console.log(creditCardCharge);
-
-    var errors = [];
+    var context = this;
+    var errors  = [];
 
     if(err) {
       errors.push(err.message);
-    }
 
-    this.setState({
-      isLoading: false,
-      errors: errors
-    });
+      this.setState({
+        isLoading: false,
+        errors: errors
+      });
+    } else {
+      if(creditCardCharge.status === 'VERIFIED') {
+        var paymentToken = creditCardCharge.id;
+        
+        $.ajax({
+          url: context.props.urlPayment,
+          method: 'POST',
+          data: {
+            payment_token: paymentToken
+          },
+          success: function(response) {
+            console.log(response);
+            alert("Successfully made payment!");
+          },
+          error: function(response) {
+            console.log(response);
+            errors.push("Something went wrong!");
+          },
+          complete: function(response) {
+            context.setState({
+              isLoading: false,
+              errors: errors
+            });
+          }
+        });
+      } else if(creditCardCharge.status === 'IN_REVIEW') {
+        var w = window.open(creditCardCharge.payer_authentication_url, 'Payment Authentication', "height=400,width=600");
+
+        var paymentToken = creditCardCharge.id;
+        
+        $.ajax({
+          url: context.props.urlPayment,
+          method: 'POST',
+          data: {
+            payment_token: paymentToken
+          },
+          success: function(response) {
+            console.log(response);
+            alert("Successfully made payment!");
+          },
+          error: function(response) {
+            console.log(response);
+            errors.push("Something went wrong!");
+          },
+          complete: function(response) {
+            context.setState({
+              isLoading: false,
+              errors: errors
+            });
+          }
+        });
+      } else if(creditCardCharge.status === 'FAILED') {
+        errors.push(creditCardCharge.failure_reason);
+
+        this.setState({
+          isLoading: false,
+          errors: errors
+        });
+      }
+    }
   }
 
   handleAmountChanged(event) {
