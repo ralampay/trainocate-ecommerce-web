@@ -59,7 +59,10 @@ export default class PaymentForm extends React.Component {
           url: context.props.urlPayment,
           method: 'POST',
           data: {
-            payment_token: paymentToken
+            token: paymentToken,
+            external_id: "something",
+            amount: context.state.amount,
+            cvv: context.state.cvn
           },
           success: function(response) {
             console.log(response);
@@ -77,39 +80,15 @@ export default class PaymentForm extends React.Component {
           }
         });
       } else if(creditCardCharge.status === 'IN_REVIEW') {
-        var w = window.open(creditCardCharge.payer_authentication_url, 'Payment Authentication', "height=400,width=600");
-
-        var paymentToken = creditCardCharge.id;
-        
-        $.ajax({
-          url: context.props.urlPayment,
-          method: 'POST',
-          data: {
-            payment_token: paymentToken
-          },
-          success: function(response) {
-            console.log(response);
-            alert("Successfully made payment!");
-          },
-          error: function(response) {
-            console.log(response);
-            errors.push("Something went wrong!");
-          },
-          complete: function(response) {
-            context.setState({
-              isLoading: false,
-              errors: errors
-            });
-          }
-        });
+        var w = window.open(creditCardCharge.payer_authentication_url, 'sample-inline-window');
       } else if(creditCardCharge.status === 'FAILED') {
         errors.push(creditCardCharge.failure_reason);
-
-        this.setState({
-          isLoading: false,
-          errors: errors
-        });
       }
+
+      this.setState({
+        isLoading: false,
+        errors: errors
+      });
     }
   }
 

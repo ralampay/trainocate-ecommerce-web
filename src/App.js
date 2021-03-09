@@ -9,6 +9,7 @@ import Navigation from "./Navigation";
 import Main from "./Main";
 import CoursesIndex from "./CoursesIndex";
 import PaymentForm from "./PaymentForm";
+import AdminIndex from "./AdminIndex";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,10 @@ export default class App extends React.Component {
               xenditToken={this.props.xenditToken}
               xenditBaseUrl={this.props.xenditBaseUrl}
               urlPayment={this.props.urlPayment}
+            />
+          </Route>
+          <Route exact path="/admin">
+            <AdminIndex
             />
           </Route>
         </Switch>
