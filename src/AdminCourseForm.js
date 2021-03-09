@@ -1,5 +1,7 @@
 import React from "react";
 
+import ErrorNotification from "./ErrorNotification";
+
 export default class AdminCourseForm extends React.Component {
   constructor(props) {
     super(props);
@@ -9,13 +11,15 @@ export default class AdminCourseForm extends React.Component {
       code: props.code || "",
       description: props.description || "",
       cost: props.cost || 40000.00,
-      isSubmitting: false
+      isSubmitting: false,
+      errors: []
     }
   }
 
   handleSaveClicked() {
     this.setState({
-      isSubmitting: true
+      isSubmitting: true,
+      errors: []
     });
   }
 
@@ -46,6 +50,9 @@ export default class AdminCourseForm extends React.Component {
   render() {
     return (
       <div>
+        <ErrorNotification
+          messages={this.state.errors}
+        />
         <div className="row">
           <div className="col-md-9 col-xs-12">
             <div className="form-group">

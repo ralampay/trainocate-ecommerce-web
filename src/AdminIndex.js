@@ -13,7 +13,7 @@ export default class AdminIndex extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <h1>
           Admin
         </h1>
