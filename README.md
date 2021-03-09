@@ -15,13 +15,15 @@ Component for web frontend of Trainocate Ecommerce app.
 yarn install
 ```
 
-2. Build aand run local development version:
+2. Copy `.env` to `.env.dist` and change values accordingly
+
+3. Build and run local development version:
 
 ```
 ./node_modules/.bin/webpack serve --mode development
 ```
 
-3. Point browser to `http://localhost:8080`
+4. Point browser to `http://localhost:8080`
 
 ## Deploying to Production
 

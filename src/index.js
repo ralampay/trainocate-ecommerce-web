@@ -11,9 +11,18 @@ import App from "./App";
 
 import "./stylesheets/application.scss";
 
+const envVariables = process.env;
+const {
+  XENDIT_TOKEN,
+  XENDIT_BASE_URL
+} = envVariables;
+
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
-    <App />,
+    <App 
+      xenditToken={XENDIT_TOKEN}
+      xenditBaseUrl={XENDIT_BASE_URL}
+    />,
     document.getElementById('root')
   )
 });

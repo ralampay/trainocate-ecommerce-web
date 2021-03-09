@@ -4,3 +4,6 @@ node_modules/
 # Ignore bundle.js since it will be built per deployment
 dist/bundle.js
 dist/bundle.js.LICENSE.txt
+
+# Ignore .env
+.env

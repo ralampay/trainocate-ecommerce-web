@@ -25,6 +25,11 @@ export default class Navigation extends React.Component {
               Courses
             </Link>
           </li>
+          <li>
+            <Link to="/make-payment">
+              Make Payment
+            </Link>
+          </li>
         </ul>
       </div>
     );

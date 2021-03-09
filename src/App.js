@@ -8,6 +8,7 @@ import {
 import Navigation from "./Navigation";
 import Main from "./Main";
 import CoursesIndex from "./CoursesIndex";
+import PaymentForm from "./PaymentForm";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,12 @@ export default class App extends React.Component {
           </Route>
           <Route exact path="/courses">
             <CoursesIndex
+            />
+          </Route>
+          <Route exact path="/make-payment">
+            <PaymentForm
+              xenditToken={this.props.xenditToken}
+              xenditBaseUrl={this.props.xenditBaseUrl}
             />
           </Route>
         </Switch>
