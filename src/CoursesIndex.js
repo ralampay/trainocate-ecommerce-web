@@ -1,18 +1,15 @@
 import React from "react";
+import {
+  Link
+} from "react-router-dom";
+
 
 export default class CoursesIndex extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      courses: props.courses || [],
-      course: {
-        code: "",
-        name: "",
-        description: "",
-        price: 0.00,
-        num_days: 0
-      }
+      courses: props.courses || []
     }
   }
 
@@ -44,6 +41,10 @@ export default class CoursesIndex extends React.Component {
     });
   }
 
+  setCurrentCourse(course) {
+    this.props.setCurrentCourse(course);
+  }
+
   renderCourses() {
     var context = this;
 
@@ -72,6 +73,13 @@ export default class CoursesIndex extends React.Component {
                   <p>
                     {o.description}
                   </p>
+                  <Link 
+                    to="/enroll" 
+                    className="btn btn-info"
+                    onClick={context.setCurrentCourse.bind(context, o)}
+                  >
+                    Enroll
+                  </Link>
                   <hr/>
                 </div>
               )

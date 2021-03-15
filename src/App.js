@@ -9,6 +9,7 @@ import Navigation from "./Navigation";
 import Main from "./Main";
 import CoursesIndex from "./CoursesIndex";
 import PaymentForm from "./PaymentForm";
+import Enroll from "./Enroll";
 import AdminIndex from "./AdminIndex";
 
 export default class App extends React.Component {
@@ -18,8 +19,13 @@ export default class App extends React.Component {
     this.state = {
       apiSaveCourse: props.apiBaseUrl + props.endpointAdminSaveCourse,
       apiFetchCourses: props.apiBaseUrl + props.endpointFetchCourses,
-      apiDestroyCourse: props.apiBaseUrl + props.endpointDestroyCourse
+      apiDestroyCourse: props.apiBaseUrl + props.endpointDestroyCourse,
+      course: false
     }
+  }
+
+  setCurrentCourse(course) {
+    this.setState({ course: course });
   }
 
   render() {
@@ -35,13 +41,13 @@ export default class App extends React.Component {
           <Route exact path="/courses">
             <CoursesIndex
               apiFetchCourses={this.state.apiFetchCourses}
+              setCurrentCourse={this.setCurrentCourse.bind(this)}
             />
           </Route>
-          <Route exact path="/make-payment">
-            <PaymentForm
+          <Route exact path="/enroll">
+            <Enroll
+              course={this.state.course}
               xenditToken={this.props.xenditToken}
-              xenditBaseUrl={this.props.xenditBaseUrl}
-              urlPayment={this.props.urlPayment}
             />
           </Route>
           <Route exact path="/admin">

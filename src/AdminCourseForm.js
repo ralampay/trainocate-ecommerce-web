@@ -63,7 +63,7 @@ export default class AdminCourseForm extends React.Component {
   }
 
   handleNameChanged(event) {
-    this.props.handleUpdateCurrentCourseNumDays(event.target.value);
+    this.props.handleUpdateCurrentCourseName(event.target.value);
   }
 
   handleCodeChanged(event) {
