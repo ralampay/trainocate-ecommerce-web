@@ -17,7 +17,8 @@ const {
   XENDIT_BASE_URL,
   TRAINOCATE_PAYMENT_ENDPOINT,
   API_BASE_URL,
-  ENDPOINT_ADMIN_SAVE_COURSE
+  ENDPOINT_ADMIN_SAVE_COURSE,
+  ENDPOINT_FETCH_COURSES
 } = envVariables;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       urlPayment={TRAINOCATE_PAYMENT_ENDPOINT}
       apiBaseUrl={API_BASE_URL}
       endpointAdminSaveCourse={ENDPOINT_ADMIN_SAVE_COURSE}
+      endpointFetchCourses={ENDPOINT_FETCH_COURSES}
     />,
     document.getElementById('root')
   )

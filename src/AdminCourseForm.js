@@ -57,6 +57,8 @@ export default class AdminCourseForm extends React.Component {
         context.setState({
           isSubmitting: false
         });
+
+        context.props.fetchCourses();
       },
       error: function(response) {
         console.log(response);
@@ -70,31 +72,31 @@ export default class AdminCourseForm extends React.Component {
   }
 
   handleNameChanged(event) {
-    this.updateState({
+    this.setState({
       name: event.target.value
     });
   }
 
   handleCodeChanged(event) {
-    this.updateState({
+    this.setState({
       code: event.target.value
     });
   }
 
   handleDescriptionChanged(event) {
-    this.updateState({
+    this.setState({
       description: event.target.value
     });
   }
 
   handlePriceChanged(event) {
-    this.updateState({
+    this.setState({
       price: event.target.value
     });
   }
 
   handleNumDaysChanged(event) {
-    this.updateNumDays({
+    this.setState({
       numDays: event.target.value
     });
   }
@@ -106,7 +108,7 @@ export default class AdminCourseForm extends React.Component {
           messages={this.state.errors}
         />
         <div className="row">
-          <div className="col-md-9 col-xs-12">
+          <div className="col-md-8 col-xs-12">
             <div className="form-group">
               <label>
                 * Name
@@ -119,7 +121,7 @@ export default class AdminCourseForm extends React.Component {
               />
             </div>
           </div>
-          <div className="col-md-3 col-xs-12">
+          <div className="col-md-4 col-xs-12">
             <div className="form-group">
               <label>
                 * Code
@@ -149,7 +151,7 @@ export default class AdminCourseForm extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-9 col-xs-12">
+          <div className="col-md-8 col-xs-12">
             <div className="form-group">
               <label>
                 * Price
@@ -163,7 +165,7 @@ export default class AdminCourseForm extends React.Component {
               />
             </div>
           </div>
-          <div className="col-md-3 col-xs-12">
+          <div className="col-md-4 col-xs-12">
             <div className="form-group">
               <label>
                 * Number of Days

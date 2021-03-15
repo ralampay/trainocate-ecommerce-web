@@ -16,7 +16,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      apiSaveCourse: props.apiBaseUrl + props.endpointAdminSaveCourse
+      apiSaveCourse: props.apiBaseUrl + props.endpointAdminSaveCourse,
+      apiFetchCourses: props.apiBaseUrl + props.endpointFetchCourses
     }
   }
 
@@ -44,6 +45,7 @@ export default class App extends React.Component {
           <Route exact path="/admin">
             <AdminIndex
               apiSaveCourse={this.state.apiSaveCourse}
+              apiFetchCourses={this.state.apiFetchCourses}
             />
           </Route>
         </Switch>
