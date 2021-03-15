@@ -1,4 +1,5 @@
 import React from "react";
+import $ from 'jquery';
 
 import ErrorNotification from "./ErrorNotification";
 
@@ -7,11 +8,13 @@ export default class AdminCourseForm extends React.Component {
     super(props);
 
     this.state = {
-      name: props.name || "",
-      code: props.code || "",
-      description: props.description || "",
-      cost: props.cost || 40000.00,
+      name: props.name || "New Course",
+      code: props.code || "NC",
+      description: props.description || "Some Description",
+      price: props.price || 40000.00,
+      numDays: props.numDays || 1,
       isSubmitting: false,
+      apiSaveCourse: props.apiSaveCourse,
       errors: []
     }
   }
@@ -20,6 +23,49 @@ export default class AdminCourseForm extends React.Component {
     this.setState({
       isSubmitting: true,
       errors: []
+    });
+
+    var context = this;
+
+    var data = {
+      code:         context.state.code,
+      name:         context.state.name,
+      description:  context.state.description,
+      price:        context.state.price,
+      num_days:     context.state.numDays
+    }
+
+    console.log(data);
+
+    var payload = JSON.stringify(data);
+    console.log(payload);
+
+    $.ajax({
+      url: context.props.apiSaveCourse,
+      method: 'POST',
+      headers: {
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true'
+      },
+      data: payload,
+      success: function(response) {
+        console.log(response);
+        alert("Successfully saved course!");
+
+        context.setState({
+          isSubmitting: false
+        });
+      },
+      error: function(response) {
+        console.log(response);
+        alert("Something went wrong!");
+
+        context.setState({
+          isSubmitting: false
+        });
+      }
     });
   }
 
@@ -41,9 +87,15 @@ export default class AdminCourseForm extends React.Component {
     });
   }
 
-  handleCostChanged(event) {
+  handlePriceChanged(event) {
     this.updateState({
-      cost: event.target.value
+      price: event.target.value
+    });
+  }
+
+  handleNumDaysChanged(event) {
+    this.updateNumDays({
+      numDays: event.target.value
     });
   }
 
@@ -97,16 +149,30 @@ export default class AdminCourseForm extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col-md-9 col-xs-12">
             <div className="form-group">
               <label>
-                * Cost
+                * Price
               </label>
               <input
-                value={this.state.cost}
+                value={this.state.price}
                 type="number"
                 className="form-control"
-                onChange={this.handleCostChanged.bind(this)}
+                onChange={this.handlePriceChanged.bind(this)}
+                disabled={this.state.isSubmitting}
+              />
+            </div>
+          </div>
+          <div className="col-md-3 col-xs-12">
+            <div className="form-group">
+              <label>
+                * Number of Days
+              </label>
+              <input
+                value={this.state.numDays}
+                type="number"
+                className="form-control"
+                onChange={this.handleNumDaysChanged.bind(this)}
                 disabled={this.state.isSubmitting}
               />
             </div>

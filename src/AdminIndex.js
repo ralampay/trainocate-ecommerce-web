@@ -18,6 +18,7 @@ export default class AdminIndex extends React.Component {
           Admin
         </h1>
         <AdminCourseForm
+          apiSaveCourse={this.props.apiSaveCourse}
         />
       </div>
     );

@@ -14,6 +14,10 @@ import AdminIndex from "./AdminIndex";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      apiSaveCourse: props.apiBaseUrl + props.endpointAdminSaveCourse
+    }
   }
 
   render() {
@@ -39,6 +43,7 @@ export default class App extends React.Component {
           </Route>
           <Route exact path="/admin">
             <AdminIndex
+              apiSaveCourse={this.state.apiSaveCourse}
             />
           </Route>
         </Switch>

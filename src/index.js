@@ -15,7 +15,9 @@ const envVariables = process.env;
 const {
   XENDIT_TOKEN,
   XENDIT_BASE_URL,
-  TRAINOCATE_PAYMENT_ENDPOINT
+  TRAINOCATE_PAYMENT_ENDPOINT,
+  API_BASE_URL,
+  ENDPOINT_ADMIN_SAVE_COURSE
 } = envVariables;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       xenditToken={XENDIT_TOKEN}
       xenditBaseUrl={XENDIT_BASE_URL}
       urlPayment={TRAINOCATE_PAYMENT_ENDPOINT}
+      apiBaseUrl={API_BASE_URL}
+      endpointAdminSaveCourse={ENDPOINT_ADMIN_SAVE_COURSE}
     />,
     document.getElementById('root')
   )
