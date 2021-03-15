@@ -18,7 +18,8 @@ const {
   TRAINOCATE_PAYMENT_ENDPOINT,
   API_BASE_URL,
   ENDPOINT_ADMIN_SAVE_COURSE,
-  ENDPOINT_FETCH_COURSES
+  ENDPOINT_FETCH_COURSES,
+  ENDPOINT_DESTROY_COURSE
 } = envVariables;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       apiBaseUrl={API_BASE_URL}
       endpointAdminSaveCourse={ENDPOINT_ADMIN_SAVE_COURSE}
       endpointFetchCourses={ENDPOINT_FETCH_COURSES}
+      endpointDestroyCourse={ENDPOINT_DESTROY_COURSE}
     />,
     document.getElementById('root')
   )

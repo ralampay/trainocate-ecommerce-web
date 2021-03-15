@@ -8,12 +8,6 @@ export default class AdminCourseForm extends React.Component {
     super(props);
 
     this.state = {
-      name: props.name || "New Course",
-      code: props.code || "NC",
-      description: props.description || "Some Description",
-      price: props.price || 40000.00,
-      numDays: props.numDays || 1,
-      isSubmitting: false,
       apiSaveCourse: props.apiSaveCourse,
       errors: []
     }
@@ -21,18 +15,19 @@ export default class AdminCourseForm extends React.Component {
 
   handleSaveClicked() {
     this.setState({
-      isSubmitting: true,
       errors: []
     });
+
+    this.props.toggleIsSubmitting();
 
     var context = this;
 
     var data = {
-      code:         context.state.code,
-      name:         context.state.name,
-      description:  context.state.description,
-      price:        context.state.price,
-      num_days:     context.state.numDays
+      code:         context.props.code,
+      name:         context.props.name,
+      description:  context.props.description,
+      price:        context.props.price,
+      num_days:     context.props.numDays
     }
 
     console.log(data);
@@ -54,9 +49,7 @@ export default class AdminCourseForm extends React.Component {
         console.log(response);
         alert("Successfully saved course!");
 
-        context.setState({
-          isSubmitting: false
-        });
+        context.props.toggleIsSubmitting();
 
         context.props.fetchCourses();
       },
@@ -64,41 +57,29 @@ export default class AdminCourseForm extends React.Component {
         console.log(response);
         alert("Something went wrong!");
 
-        context.setState({
-          isSubmitting: false
-        });
+        context.props.toggleIsSubmitting();
       }
     });
   }
 
   handleNameChanged(event) {
-    this.setState({
-      name: event.target.value
-    });
+    this.props.handleUpdateCurrentCourseNumDays(event.target.value);
   }
 
   handleCodeChanged(event) {
-    this.setState({
-      code: event.target.value
-    });
+    this.props.handleUpdateCurrentCourseCode(event.target.value);
   }
 
   handleDescriptionChanged(event) {
-    this.setState({
-      description: event.target.value
-    });
+    this.props.handleUpdateCurrentCourseDescription(event.target.value);
   }
 
   handlePriceChanged(event) {
-    this.setState({
-      price: event.target.value
-    });
+    this.props.handleUpdateCurrentCoursePrice(event.target.value);
   }
 
   handleNumDaysChanged(event) {
-    this.setState({
-      numDays: event.target.value
-    });
+    this.props.handleUpdateCurrentCourseNumDays(event.target.value);
   }
 
   render() {
@@ -114,10 +95,10 @@ export default class AdminCourseForm extends React.Component {
                 * Name
               </label>
               <input
-                value={this.state.name}
+                value={this.props.name}
                 className="form-control"
                 onChange={this.handleNameChanged.bind(this)}
-                disabled={this.state.isSubmitting}
+                disabled={this.props.isSubmitting}
               />
             </div>
           </div>
@@ -127,10 +108,10 @@ export default class AdminCourseForm extends React.Component {
                 * Code
               </label>
               <input
-                value={this.state.code}
+                value={this.props.code}
                 className="form-control"
                 onChange={this.handleCodeChanged.bind(this)}
-                disabled={this.state.isSubmitting}
+                disabled={this.props.isSubmitting}
               />
             </div>
           </div>
@@ -142,10 +123,10 @@ export default class AdminCourseForm extends React.Component {
                 * Description
               </label>
               <input
-                value={this.state.description}
+                value={this.props.description}
                 className="form-control"
                 onChange={this.handleDescriptionChanged.bind(this)}
-                disabled={this.state.isSubmitting}
+                disabled={this.props.isSubmitting}
               />
             </div>
           </div>
@@ -157,11 +138,11 @@ export default class AdminCourseForm extends React.Component {
                 * Price
               </label>
               <input
-                value={this.state.price}
+                value={this.props.price}
                 type="number"
                 className="form-control"
                 onChange={this.handlePriceChanged.bind(this)}
-                disabled={this.state.isSubmitting}
+                disabled={this.props.isSubmitting}
               />
             </div>
           </div>
@@ -171,11 +152,11 @@ export default class AdminCourseForm extends React.Component {
                 * Number of Days
               </label>
               <input
-                value={this.state.numDays}
+                value={this.props.numDays}
                 type="number"
                 className="form-control"
                 onChange={this.handleNumDaysChanged.bind(this)}
-                disabled={this.state.isSubmitting}
+                disabled={this.props.isSubmitting}
               />
             </div>
           </div>
@@ -183,7 +164,7 @@ export default class AdminCourseForm extends React.Component {
         <hr/>
         <button 
           className="btn btn-success btn-block"
-          disabled={this.state.isSubmitting}
+          disabled={this.props.isSubmitting}
           onClick={this.handleSaveClicked.bind(this)}
         >
           Save Record
