@@ -125,22 +125,36 @@ export default class Enroll extends React.Component {
           urlValidatePayment: "#",
           iFrameDisplay: "none"
         });
+
+        var data = {
+          token: paymentToken
+        }
+
+        var payload = JSON.stringify(data);
+
+        console.log("API Make Credit Card Payment: " + context.props.apiMakeCreditCardPayment);
         
         $.ajax({
-          url: context.props.urlPayment,
+          url: context.props.apiMakeCreditCardPayment,
           method: 'POST',
-          data: {
-            token: paymentToken
+          headers: {
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true'
           },
+          data: payload,
           success: function(response) {
             console.log(response);
             alert("Successfully made payment!");
+            context.setState({
+              isLoading: false,
+              errors: errors
+            });
           },
           error: function(response) {
             console.log(response);
             errors.push("Something went wrong!");
-          },
-          complete: function(response) {
             context.setState({
               isLoading: false,
               errors: errors

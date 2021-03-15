@@ -20,6 +20,7 @@ export default class App extends React.Component {
       apiSaveCourse: props.apiBaseUrl + props.endpointAdminSaveCourse,
       apiFetchCourses: props.apiBaseUrl + props.endpointFetchCourses,
       apiDestroyCourse: props.apiBaseUrl + props.endpointDestroyCourse,
+      apiMakeCreditCardPayment: props.apiBaseUrl + props.endpointMakeCreditCardPayment,
       course: false
     }
   }
@@ -46,6 +47,7 @@ export default class App extends React.Component {
           </Route>
           <Route exact path="/enroll">
             <Enroll
+              apiMakeCreditCardPayment={this.state.apiMakeCreditCardPayment}
               course={this.state.course}
               xenditToken={this.props.xenditToken}
             />

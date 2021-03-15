@@ -19,7 +19,8 @@ const {
   API_BASE_URL,
   ENDPOINT_ADMIN_SAVE_COURSE,
   ENDPOINT_FETCH_COURSES,
-  ENDPOINT_DESTROY_COURSE
+  ENDPOINT_DESTROY_COURSE,
+  ENDPOINT_MAKE_CREDIT_CARD_PAYMENT
 } = envVariables;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       endpointAdminSaveCourse={ENDPOINT_ADMIN_SAVE_COURSE}
       endpointFetchCourses={ENDPOINT_FETCH_COURSES}
       endpointDestroyCourse={ENDPOINT_DESTROY_COURSE}
+      endpointMakeCreditCardPayment={ENDPOINT_MAKE_CREDIT_CARD_PAYMENT}
     />,
     document.getElementById('root')
   )
