@@ -135,7 +135,8 @@ export default class Enroll extends React.Component {
           email:              this.state.email,
           company:            this.state.company,
           contact_number:     this.state.contactNumber,
-          cvn:                this.state.ccCvn
+          cvn:                this.state.ccCvn,
+          course:             this.props.course
         }
 
         var payload = JSON.stringify(data);
@@ -159,12 +160,19 @@ export default class Enroll extends React.Component {
             });
           },
           error: function(response) {
-            console.log(response);
-            errors.push("Something went wrong!");
-            context.setState({
-              isLoading: false,
-              errors: errors
-            });
+            var errors = [];
+
+            try {
+              errors = JSON.parse(response.responseText).errors;
+            } catch(err) {
+              console.log(response);
+              errors = ["Something went wrong"];
+            } finally {
+              context.setState({
+                isLoading: false,
+                errors: errors
+              });
+            }
           }
         });
       } else if(creditCardCharge.status === 'IN_REVIEW') {
