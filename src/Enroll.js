@@ -97,7 +97,8 @@ export default class Enroll extends React.Component {
         card_exp_month:   this.state.ccExpiryMonth,
         card_exp_year:    this.state.ccExpiryYear,
         card_cvn:         this.state.ccCvn,
-        is_multiple_use:  this.state.isMultipleUse
+        is_multiple_use:  this.state.isMultipleUse,
+        currency:         "PHP"
       }
 
       Xendit.card.createToken(dataCreateToken, this.xenditResponseHandler.bind(this));
@@ -127,12 +128,17 @@ export default class Enroll extends React.Component {
         });
 
         var data = {
-          token: paymentToken
+          credit_card_token:  paymentToken,
+          first_name:         this.state.firstName,
+          middle_name:        this.state.middleName,
+          last_name:          this.state.lastName,
+          email:              this.state.email,
+          company:            this.state.company,
+          contact_number:     this.state.contactNumber,
+          cvn:                this.state.ccCvn
         }
 
         var payload = JSON.stringify(data);
-
-        console.log("API Make Credit Card Payment: " + context.props.apiMakeCreditCardPayment);
         
         $.ajax({
           url: context.props.apiMakeCreditCardPayment,
